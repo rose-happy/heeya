@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mbc.jmh7.Service">
+ 		<insert id="insertgo">
+ 			insert into sang0320 values(coco_sql.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},0)
+ 		</insert>
+ 		
+ 		<select id="outall" resultType="com.mbc.jmh7.SangDTO">
+ 			select snumber,spname,sname,sarea,to_char(sdate,'yyyy-MM-dd')sdate,sprice,simg,sreadcnt from sang0320
+ 		</select>
+ 		
+ 		<update id="readcnt">
+ 			update sang0320 set sreadcnt =sreadcnt+1 where snumber =#{param1}
+ 		</update>
+ 		
+ 		<select id="detail" resultType="com.mbc.jmh7.SangDTO">
+ 			select * from sang0320 where snumber = #{param1}
+ 		</select>
+ 		
+ 		<select id="upload" resultType="com.mbc.jmh7.SangDTO">
+ 			select * from sang0320 where snumber = #{param1}
+ 		</select>
+ 		
+ 		<update id="upload1">
+ 			update sang0320 set spname = #{param1}, sname = #{param2}, sarea = #{param3}, sdate = #{param4}, 
+ 								sprice = #{param5}, simg = #{param6} where snumber=#{param7}
+ 		</update>
+ 		
+ 		<select id="delete1" resultType="com.mbc.jmh7.SangDTO">
+ 			select * from sang0320 where snumber =#{param1}
+ 		</select>
+ 		
+ 		<delete id="delete2">
+ 			delete from sang0320 where snumber = #{param1}
+ 		</delete>
+ 				
+ 		<select id="searchgo" resultType="com.mbc.jmh7.SangDTO">
+ 			select snumber,spname,sname,sarea,to_char(sdate,'yyyy-MM-dd')sdate,sprice,simg,sreadcnt 
+ 			from sang0320
+ 		
+ 			 <where>
+ 					<choose>
+ 						<when test="param1==''spname'">
+ 						spname  like'%' ||  #{param2} ||'%'
+ 						</when>
+ 						<when test="param1==''sname'">
+ 						sname  like'%' ||  #{param2} ||'%'
+ 						</when>
+ 							<when test="param1==''sarea'">
+ 						sarea  like'%' ||  #{param2} ||'%'
+ 						</when>
+ 					</choose>
+ 					
+ 			</where>
+ 		</select>
+</mapper>
+
+

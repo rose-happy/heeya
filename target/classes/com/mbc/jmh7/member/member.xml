@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mbc.jmh7.member.MemberService">
+ 	
+ 	<select id="idcount" resultType="int">
+ 		select count(*) from member0325 where id =#{param1}
+ 	</select>
+ 	
+ 	<insert id="insertup">
+ 		insert into member0325 values(#{param1},#{param2},#{param3},#{param4})
+ 	</insert>
+ 	
+ 	<select id="allout" resultType="com.mbc.jmh7.member.MemberDTO">
+ 		select * from member0325
+ 	</select>
+</mapper>
+
+
